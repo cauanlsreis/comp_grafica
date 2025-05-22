@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de Computação Gráfica</title>
+</head>
+<body>
+    <h1>App de Computação Gráfica</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="imagem" accept=".jpg, .jpeg, .png" required>
+        <br><br>
+        <label for="filtro">Escolha o filtro:</label>
+        <select name="filtro">
+            <option value="negativo">Negativo</option>
+            <option value="escala_cinza">Cinza</option>
+            <option value="contorno">Detecção de bordas</option>
+            <option value="gama">Correção Gama</option>
+            <option value="logaritmo">Transformação Logarítmica</option>
+            <option value="pb">Preto e Branco</option>
+            <option value="blur">Desfoque (Blur)</option>
+            <option value="sharpen">Nitidez (Sharpen)</option>
+            <option value="sobel">Filtro Sobel</option>
+            <option value="laplaciano">Filtro Laplaciano</option>
+            <option value="piwwit">Filtro Piwwit</option>
+            <option value="ruido">Ruído</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Aplicar filtro">
+    </form>
+
+    {% if original and processada %}
+    <div class="container">
+        <div class="item1">
+            <h2>Imagem original:</h2>
+            <img src="{{ original }}" width="300">
+        </div>
+        <div class="item2">
+            <h2>Imagem processada:</h2>
+            <img src="{{ processada }}" width="300">
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
