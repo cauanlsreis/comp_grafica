@@ -1,3 +1,4 @@
+# Importações
 from PIL import Image, ImageFilter, ImageChops
 import numpy as np
 import random
@@ -13,7 +14,7 @@ def filtro_negativo(img):
             pixels[i, j] = (255 - r, 255 - g, 255 - b)
     return img
 
-
+# Filtro Escala de Cinza
 def filtro_escala_cinza(img):
     img = img.convert("RGB")
     matriz = img.load()
@@ -56,7 +57,7 @@ def filtro_logaritmo(img):
             )
     return img
 
-# Filtro Preto e Branco (binário)
+# Filtro Preto e Branco
 def filtro_pb(img):
     img = img.convert('RGB')
     pixels = img.load()
@@ -128,14 +129,16 @@ def filtro_piwwit(img):
     return ImageChops.add(img_x, img_y)
 
 # Filtro de Ruído (sal e pimenta)
-def filtro_ruido(img, prob=0.05):
-    img = img.convert('L')  # ou 'RGB' se quiser
-    output = np.array(img)
-    for i in range(output.shape[0]):
-        for j in range(output.shape[1]):
+def filtro_ruido(img, prob=0.06):
+    img = img.convert("RGB")
+    np_img = np.array(img)
+
+    for i in range(np_img.shape[0]):
+        for j in range(np_img.shape[1]):
             rand = random.random()
             if rand < prob:
-                output[i][j] = 0
+                np_img[i, j] = [0, 0, 0]  # Preto
             elif rand > 1 - prob:
-                output[i][j] = 255
-    return Image.fromarray(output)
+                np_img[i, j] = [255, 255, 255]  # Branco
+
+    return Image.fromarray(np_img)

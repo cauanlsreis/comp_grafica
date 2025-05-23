@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App de Computação Gráfica</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- Título principal da página -->
     <h1>App de Computação Gráfica</h1>
+    <!-- Formulário para upload de imagem e escolha do filtro -->
     <form method="POST" enctype="multipart/form-data">
+        <!-- Input para selecionar o arquivo de imagem (JPG ou PNG) -->
         <input type="file" name="imagem" accept=".jpg, .jpeg, .png" required>
         <br><br>
+        <!-- Menu para escolha do filtro de processamento de imagem -->
         <label for="filtro">Escolha o filtro:</label>
         <select name="filtro">
             <option value="negativo">Negativo</option>
@@ -26,18 +31,25 @@
             <option value="ruido">Ruído</option>
         </select>
         <br><br>
+        <!-- Botão para enviar o formulário -->
         <input type="submit" value="Aplicar filtro">
     </form>
 
     {% if original and processada %}
     <div class="container">
+        <!-- Exibe a imagem original enviada pelo usuário -->
         <div class="item1">
             <h2>Imagem original:</h2>
             <img src="{{ original }}" width="300">
         </div>
+        <!-- Exibe a imagem após o filtro ser aplicado -->
         <div class="item2">
             <h2>Imagem processada:</h2>
             <img src="{{ processada }}" width="300">
+            
+            <!-- Botão de download -->
+            <br><br>
+            <a href="{{ processada }}" download class="download-btn">Baixar imagem processada</a>
         </div>
     </div>
     {% endif %}
